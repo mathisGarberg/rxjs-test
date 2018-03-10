@@ -5,12 +5,16 @@ const router = express.Router();
 const port = 3000;
 const path = require('path');
 
+const Rx = require('rx');
+const requests_ = new Rx.Subject();
+
 app.use(express.static(__dirname + '/../views'));
 app.use(express.static(__dirname + '/../client'));
 
 // url: http://localhost:3000/
-app.get('/', (request, response) => 
-    response.sendFile(path.join(__dirname, '/../views'))
+app.get('/', (request, response) => {
+        response.sendFile(path.join(__dirname, '/../views'));
+    }
 );
 
 // all routes prefixed with /api
